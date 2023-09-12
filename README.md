@@ -23,13 +23,12 @@ Para instalar esta aplicación, sigue estos pasos:
 
 - Clona este repositorio en tu máquina local.
 - Abre una terminal y navega al directorio del proyecto.
-- Ejecuta el comando npm install para instalar las dependencias del proyecto.
-- Para generar los modelos ejecuta `npx prisma init`
+- Ejecuta el comando `npm install` para instalar las dependencias del proyecto.
+- Para generar los modelos ejecuta `npx prisma` y `npx prisma init`
 - Ejecuta el comando `npx prisma migrate dev --name init` para crear la base de datos y las tablas necesarias.
-- Ejecuta el comando npx prisma db seed --preview-feature para insertar algunos datos de prueba en la base de datos.
 - Crea un archivo .env en la raíz del proyecto y añade la siguiente variable de entorno:
   `DATABASE_URL="file:./dev.db"`
 - Copiar
 
-Ejecuta el comando npm run dev para iniciar el servidor de desarrollo.
-Abre un navegador y visita http://localhost:6005 para ver la aplicación en funcionamiento.
+Ejecutar el comando `npm run dev` para iniciar el servidor de desarrollo.
+Abrir un navegador y visitar http://localhost:6005/view/products/ para ver la aplicación en funcionamiento.
