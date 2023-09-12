@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container-fluid p-24">
+    <header><%- include('../partials/header'); %></header>
+    <div class="container-fluid mt-5 p-3">
+      <div class="row">
+        <!-- Columna del formulario -->
+        <div class="col-md-4">
+          <form action="/view/products" method="POST">
+            <input
+              type="text"
+              value="<%= product ? product.id : '' %>"
+              hidden
+              name="id"
+            />
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control"
+                value="<%= product ? product.name : '' %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="price">Precio</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                class="form-control"
+                value="<%= product ? product.price : '' %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="amount">Cantidad</label>
+              <input
+                type="number"
+                id="amount"
+                name="amount"
+                class="form-control"
+                value="<%= product ? product.amount : '' %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="category">Categoría</label>
+              <select class="custom-select" id="category" name="category">
+                <option selected>---</option>
+                <% categories.forEach(function(category) { %>
+                  <option value="<%= category.id %>"
+                    <%= product && product.categoryId === category.id ? 'selected' : '' %>
+                  ><%= category.name %></option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" />
+            </div>
+          </form>
+        </div>
+
+        <!-- Columna de la tabla -->
+        <div class="col-md-8">
+          <div class="">
+            
+            <table class="table table-striped">
+              <thead class="text-center">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Categoría</th>
+                  <th colspan="2">Accion</th>
+                </tr>
+              </thead>
+              <tbody >
+                <% products.forEach(function(product) { %>
+                <tr>
+                  <td class="text-start"><%= product.name %></td>
+                  <td class="text-center"><%= product.price %></td>
+                  <td class="text-center"><%= product.amount %></td>
+                  <td class="text-center"><%= product.category.name %></td>
+
+                  <td class="text-center">
+                    <a
+                      type="button"
+                      class="btn btn-warning"
+                      href="/view/products/show/<%= product.id %>"
+                      >Editar</a
+                    >
+
+                  </td>
+                  <td class="text-center">
+                    <a href="/view/products/delete/<%= product.id %>" type="button" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><%- include('../partials/footer'); %></footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
